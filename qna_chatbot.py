@@ -3,8 +3,8 @@ from langchain_community.utilities import GoogleSerperAPIWrapper
 from langchain.agents import create_agent
 from langgraph.checkpoint.memory import MemorySaver
 import streamlit as st
-
 from dotenv import load_dotenv
+
 load_dotenv()
 
 
@@ -20,10 +20,19 @@ def get_agent():
         checkpointer=memory,
         system_prompt=(
             "You are an intelligent AI agent with access to a web search tool. "
-            "Be precise and concise. Only call the search tool ONCE per question "
-            "unless the first result is clearly insufficient or irrelevant. "
-            "After receiving search results, answer directly — do not search "
-            "again for the same or a very similar query."
+            "When you get search results back, NEVER copy-paste raw snippets, titles, "
+            "hashtags, links, or ads from the search results into your answer. "
+            "Instead, read the search results, extract only the relevant facts, and "
+            "write a short, clear, natural-language answer in your own words — as if "
+            "you already knew the answer and were explaining it directly to the user. "
+            "Ignore promotional content, video titles, social media handles, and "
+            "unrelated links that may appear in search results. "
+            "Only call the search tool ONCE per question unless the first result is "
+            "clearly insufficient or irrelevant. Be concise: 2-4 sentences unless the "
+            "user asks for more detail. "
+            "For subjective or opinion-based questions (e.g. 'who is better', 'which is best'), "
+            "clearly state that it's subjective, then briefly summarize what each side is known "
+            "for based on the search results, without declaring a winner."
         )
     )
     return agent
@@ -42,7 +51,6 @@ for message in st.session_state.history:
     content = message["content"]
     st.chat_message(role).markdown(content)
 
-
 query = st.chat_input("Ask Anything ?")
 if query:
     st.chat_message("user").markdown(query)
@@ -58,7 +66,6 @@ if query:
     with ai_container:
         space = st.empty()
         message = ""
-
         try:
             with st.spinner("Thinking..."):
                 for chunk in response:
@@ -68,5 +75,4 @@ if query:
         except Exception as e:
             message = f"Error: {e}"
             st.error(message)
-
         st.session_state.history.append({"role": "ai", "content": message})
