@@ -11,8 +11,11 @@ In my Gen AI journey, this is where I currently am. I built a QnA chatbot using 
 The agent is built using:
 
  **LLM** — Groq (`model="llama-3.3-70b-versatile"`), chosen for its low cost and fast inference speed
+ 
  **Tool** — Serper's built-in search tool, `GoogleSerperAPIWrapper().run`, for real-time web search
+ 
  **Checkpointer** — `MemorySaver`, used as the agent's memory to maintain conversation context
+ 
  **System prompt** — defines the agent's role and how it should behave
 
 Conversation history (questions and answers) is saved in Streamlit's session state:
