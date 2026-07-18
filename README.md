@@ -33,3 +33,8 @@ You're welcome to upgrade this chatbot , just please don't change the core idea 
 
 **Siddharth Shukla**
 GitHub: [@siddharth277](https://github.com/siddharth277)
+
+
+
+<img width="936" height="770" alt="image" src="https://github.com/user-attachments/assets/a8475993-fecc-4f74-8d5c-18b8e08cc5b6" />
+
