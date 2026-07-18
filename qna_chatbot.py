@@ -69,7 +69,8 @@ if query:
         try:
             with st.spinner("Thinking..."):
                 for chunk in response:
-                    if chunk[0].content:
+                    msg = chunk[0]
+                    if getattr(msg, "type", None) == "ai" and msg.content:
                         message = message + chunk[0].content
                         space.write(message)
         except Exception as e:
