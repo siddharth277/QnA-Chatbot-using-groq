@@ -25,7 +25,7 @@ if "history" not in st.session_state:
     st.session_state.history = []
 ```
 
-After building the agent, the interface was built using **Streamlit**, with `streaming=True` enabled so responses stream in as they're generated — just like a real chat experience.
+After building the agent, the interface was built using **Streamlit**, with `streaming=True` enabled so responses stream in as they're generated , just like a real chat experience.
 
 
 You're welcome to upgrade this chatbot , just please don't change the core idea behind the code.
